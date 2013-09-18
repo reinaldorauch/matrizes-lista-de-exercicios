@@ -28,6 +28,8 @@ void exercicio_2() {
 			matriz1[i][j] = matriz2[i][j] = k++;
 
 
+	// Tentando imprimir a matriz
+	imprime_matriz_int(matriz1);
 
 }
 
@@ -39,6 +41,9 @@ int main() {
 		switch (op) {
 		case '1':
 			exercicio_2();
+			break;
+		case '2':
+			exercicio_3();
 			break;
 		case '0':
 			encerra_programa();
