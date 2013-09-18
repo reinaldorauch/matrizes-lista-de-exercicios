@@ -51,6 +51,8 @@ void encerra_programa() {
 char get_option() {
     char c;
 
+    system("clear");   
+
     puts("Selecione uma opção:\n");
     puts("\t[1] Executar o programa para o exercício 2");
     puts("\t[2] Executar o programa para o exercício 3");
