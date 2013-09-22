@@ -26,7 +26,7 @@ void nao_implementado() {
  */
 void limpa_stdin(){
 	char c;
-	while((c = getchar()) != '\n' && c != EOF);
+	while((c = getchar()) != '\n');
 }
 
 /**

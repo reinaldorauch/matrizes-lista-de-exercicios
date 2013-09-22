@@ -11,7 +11,7 @@
  * @param x       Tamanho x das matrizes
  * @param y       Tamanho y das matrizes
  */
-void soma_matrizes_int(int **matriz1, int **matriz2, int **destino, int x, int y) {
+void soma_matrizes_int(int matriz1[][100], int matriz2[][100], int destino[][100], int x, int y) {
 
 	int i, j;
 
@@ -30,7 +30,7 @@ void soma_matrizes_int(int **matriz1, int **matriz2, int **destino, int x, int y
 void imprime_linha_variavel(int len) {
 	int j;
 	for (j = 0; j < len; j++)
-		printf("+---------\n");
+		printf("+---------");
 	puts("+");
 }
 
@@ -46,12 +46,14 @@ void imprime_matriz_int(int **matriz, int x, int y) {
 	// itera sobre as colunas da matriz
 	for (i = 0; i < x; i++) {
 
+		printf("i: %d\n", i);
+
 		// Imprime a linha de separação entre as linhas
 		imprime_linha_variavel(y);
 
 		// Imprime a linha propriamente dita da matriz
 		for (j = 0; j < y; j++) {
-			printf("| %3d ", matriz[i][j]);
+			printf("| %7d ", matriz[i][j]);
 		}
 		puts("|");
 
