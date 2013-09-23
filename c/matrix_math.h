@@ -38,6 +38,40 @@ void soma_matrizes_int(int *matriz1, int *matriz2, int *destino, int x, int y) {
 
 }
 
+/**
+ * Função que multiplica uma matriz por um número, não importando suas dimensões
+ * @param matriz  matriz de origem
+ * @param destino matriz de destino
+ * @param fator   número para a multiplicação
+ * @param linha   nº de linhas da matriz
+ * @param coluna  nº de colunas da matriz
+ */
+void multiplica_matriz_num_int(int *matriz, int *destino, int fator, int linha, int coluna) {
+
+	int *orig, *dest;
+
+	for (int i = 0; i < linha; i++) {
+	    for (int j = 0; j < coluna; j++) {
+	        orig = (matriz + j + i * coluna);
+	        dest = (destino + j + i * coluna);
+
+	        *dest = ((*orig) * fator);
+	    }
+	}
+
+}
+
+/**
+ * Função alias para se multiplicar uma matriz por um número em seus próprios valores
+ * @param matriz Matriz para a multiplicação
+ * @param fator  Número para se multiplicar a matriz
+ * @param linha  Nº de linhas da matriz
+ * @param coluna N° de colunas da matriz
+ */
+void mult_matriz_num_self_int(int *matriz, int fator, int linha, int coluna) {
+	multiplica_matriz_num_int((int *)matriz, (int *)matriz, fator, linha, coluna);
+}
+
 
 /**
  * Imprime uma linha de separação entre linhas de tabela
@@ -76,6 +110,49 @@ void imprime_matriz_int(int *matriz, int x, int y) {
 	}
 	imprime_linha_variavel(x);
 
+}
+
+/**
+ * Função que lineariza uma matriz de 2D em um vetor
+ * @param  matriz matriz a ser linearizada
+ * @param  linha  linhas da matriz
+ * @param  coluna colunas da matriz
+ * @param  vetor  vetor onde a matriz será linearizada
+ * @param  len    dimensão do vetor
+ * @return        Retorna 1 em caso de sucesso e 0 em caso de fracasso
+ */
+int lineariza_matriz_int(int *matriz, int linha, int coluna, int vetor[], int len) {
+	if((linha * coluna) != len)
+		return 0;
+
+	int k = 0;
+
+	for (int j = 0; j < coluna; j++)
+	{
+		for (int i = 0; i < linha; i++)
+		{
+			if(k <= len)
+				vetor[k++] = *(matriz + j + i * coluna);
+			else
+				return 0;
+		}
+	}
+
+	return 1;
+
+}
+
+/**
+ * Imprime um vetor passado como parâmetro, tabulado na tela
+ * @param vetor Vetor à ser impresso
+ * @param len   Tamanho deste vetor
+ */
+void imprime_vetor_int(int vetor[], int len) {
+	imprime_linha_variavel(len);
+	for (int i = 0; i < len; i++)
+		printf("| %7d ", vetor[i]);
+	puts("");
+	imprime_linha_variavel(len);
 }
 
 #endif /* MATRIX_MATH_H */

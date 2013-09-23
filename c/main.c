@@ -7,12 +7,12 @@
 #include "matrix_math.h"
 #include "menu.h"
 
-// X é o nº de colunas
+// X é o nº de colunas, exercício 2
 #define X_TAM_2 4
-// Y é o nº de linhas
+// Y é o nº de linhas, exercício 2
 #define Y_TAM_2 3
 
-// Início da sequência
+// Início da sequência,
 #define INIT_2 1
 
 
@@ -54,10 +54,45 @@ void exercicio_2() {
 
 }
 
+// Tamanho da matriz quadrada 
+#define X_TAM_3 4
+
+// Tamanho do array
+#define Y_TAM_3 16
 
 // Exercício 3
 void exercicio_3() {
-	puts("IÈ IÈ PEGADINHA DO MALANDRO");                    
+	
+	// Declaração
+	int matriz[X_TAM_3][X_TAM_3], vetor[Y_TAM_3], k = INIT_2;
+
+	// Inicializações
+	for (int j = 0; j < X_TAM_3; j++)
+		for (int i = 0; i < X_TAM_3; i++)
+			matriz[i][j] = k++;
+
+	for (int i = 0; i < Y_TAM_3; i++)
+		vetor[i] = 0;
+
+
+	// Exibições
+	cabecalho();
+
+	puts("\n------------------ Matriz original ------------------");
+	imprime_matriz_int((int *)matriz, X_TAM_3, X_TAM_3);
+
+	// Multiplicando a matriz por 5
+	mult_matriz_num_self_int((int *)matriz, 5, X_TAM_3, X_TAM_3);
+
+	puts("\n------------------ Matriz após multiplicação por 5 ------------------");
+	imprime_matriz_int((int *)matriz, X_TAM_3, X_TAM_3);
+
+	// lineariza a matriz
+	if(lineariza_matriz_int((int *)matriz, X_TAM_3, X_TAM_3, vetor, Y_TAM_3)){
+		puts("\n------------------ Matriz linearizada ------------------");
+		imprime_vetor_int(vetor, Y_TAM_3);
+	}
+
 }
 
 int main() {
