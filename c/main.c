@@ -8,9 +8,9 @@
 #include "menu.h"
 
 // X é o nº de colunas
-#define X_TAM_2 3
+#define X_TAM_2 4
 // Y é o nº de linhas
-#define Y_TAM_2 4
+#define Y_TAM_2 3
 
 // Início da sequência
 #define INIT_2 1
@@ -26,33 +26,20 @@ void exercicio_2() {
 	int i, j, k = INIT_2;
 
 	// Inicializa as matrizes com os valores designados
-	for (i = 0; i < X_TAM_2; i++)
-		for (j = 0; j < Y_TAM_2; j++)
+	for (j = 0; j < Y_TAM_2; j++) // Itera sobre as linhas
+		for (i = 0; i < X_TAM_2; i++) // Itera sobre as colunas
 			printf("Valor --> %d, i --> %d, j --> %d\n", matriz1[i][j] = matriz2[i][j] = k++, i, j);
 
 
 	// Tentando imprimir a matriz
-	imprime_matriz_int(matriz1, X_TAM_2, Y_TAM_2);
+	imprime_matriz_int((int *)matriz1, X_TAM_2, Y_TAM_2);
 
-	/*for (i = 0; i < X_TAM_2; i++) {
-		
-		imprime_linha_variavel(Y_TAM_2);
-
-		for (j = 0; j < Y_TAM_2; j++) {
-			printf("| %7d ", matriz1[i][j]);
-		}
-
-		puts("|");
-	}
-
-	imprime_linha_variavel(Y_TAM_2);
-*/
 }
 
 
 // Exercício 3
 void exercicio_3() {
-	puts("IÈ IÈ PEGADINHA DO MALANDRO");
+	puts("IÈ IÈ PEGADINHA DO MALANDRO");                    
 }
 
 int main() {
