@@ -12,20 +12,28 @@
  * @param y       Tamanho y das matrizes
  */
 void soma_matrizes_int(int *matriz1, int *matriz2, int *destino, int x, int y) {
+	// Variáveis normais
+	int i, j;
+	// Ponteiros
+	int *val_des = NULL, *val_1, *val_2;
 
-	int i, j, val_1, val_2;
+	for (j = 0; j < x; j++)
+		for(i = 0; i < y; i++)
+		{
 
-	int *val_des = NULL;
-	for(i = 0; i < y; i++)
-		for (j = 0; j < x; j++) {
 			// Ponteiro para a célula de destino
-			val_des = (destino + y + x * y);
+			val_des = (destino + i + j * y);
 
-			val_1 = *(matriz1 + y + x * y);
-			val_2 = *(matriz2 + y + x * y);
+			// Ponteiro para a célula da primeira matriz
+			val_1 = (matriz1 + i + j * y);
 
-			*val_des = val_1 + val_2;
-			printf("Valor val_des = %d", *val_des, *(matriz1 + y + x * y), *(matriz2 + y + x * y));
+			// Ponteiro para a célula da segunda matriz
+			val_2 = (matriz2 + i + j * y);
+
+			// Realizando a soma com as células correspondentes das duas primeiras matrizes
+			// e passando o resultado para a célula correspondente na matriz de destino
+			*val_des = *val_1 + *val_2;
+
 		}
 
 }

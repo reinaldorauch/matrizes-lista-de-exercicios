@@ -28,11 +28,29 @@ void exercicio_2() {
 	// Inicializa as matrizes com os valores designados
 	for (j = 0; j < Y_TAM_2; j++) // Itera sobre as linhas
 		for (i = 0; i < X_TAM_2; i++) // Itera sobre as colunas
-			printf("Valor --> %d, i --> %d, j --> %d\n", matriz1[i][j] = matriz2[i][j] = k++, i, j);
+			matriz1[i][j] = matriz2[i][j] = k++;
 
 
-	// Tentando imprimir a matriz
+	// Imprimindo a matriz
+	
+	system("clear");
+	cabecalho();
+
+	puts("\n------------------ Primeira matriz ------------------");
+
 	imprime_matriz_int((int *)matriz1, X_TAM_2, Y_TAM_2);
+
+	puts("\n------------------ Segunda matriz ------------------");
+
+	imprime_matriz_int((int *)matriz2, X_TAM_2, Y_TAM_2);
+
+
+	// Somando as matrizes
+	soma_matrizes_int((int *)matriz1, (int *)matriz2, (int *)destino, X_TAM_2, Y_TAM_2);
+
+	// Imprime matriz de resultado
+	puts("\n\n------------------ Resultado ------------------");
+	imprime_matriz_int((int *)destino, X_TAM_2, Y_TAM_2);
 
 }
 
