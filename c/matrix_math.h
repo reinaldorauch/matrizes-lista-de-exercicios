@@ -316,6 +316,13 @@ int soma_diagonal_matriz_int(int *matriz, int lin, int col, char dig) {
 	return soma;
 }
 
+/**
+ * Calcula a soma de todos os elementos da matriz
+ * @param  matriz Matriz sobre a qual será calculada o total
+ * @param  lin    Nº de linhas da matriz
+ * @param  col    Nº de colunas da matriz
+ * @return        A soma dos elementos da matriz
+ */
 int soma_elementos_matriz_int(int *matriz, int lin, int col) {
 	int soma = 0, *celula;
 
