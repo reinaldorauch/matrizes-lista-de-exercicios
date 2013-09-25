@@ -80,7 +80,7 @@ void mult_matriz_num_self_int(int *matriz, int fator, int linha, int coluna) {
 void imprime_linha_variavel(int len) {
 	int j;
 	for (j = 0; j < len; j++)
-		printf("+---------");
+		printf("+-------");
 	puts("+");
 }
 
@@ -103,7 +103,7 @@ void imprime_matriz_int(int *matriz, int x, int y) {
 
 		// Imprime a linha propriamente dita da matriz
 		for (j = 0; j < x; j++) {
-			printf("| %7d ", *(matriz + i + j * y));
+			printf("| %5d ", *(matriz + i + j * y));
 		}
 		puts("|");
 
@@ -150,9 +150,184 @@ int lineariza_matriz_int(int *matriz, int linha, int coluna, int vetor[], int le
 void imprime_vetor_int(int vetor[], int len) {
 	imprime_linha_variavel(len);
 	for (int i = 0; i < len; i++)
-		printf("| %7d ", vetor[i]);
-	puts("");
+		printf("| %5d ", vetor[i]);
+	puts("|");
 	imprime_linha_variavel(len);
 }
 
+/**
+ * Inicializa uma matriz de tamanho definido nos parâmetros dado um valor inicial
+ * @param matriz  Matriz a ser inicializada
+ * @param inicio  início da sequência
+ * @param linhas  nº de linhas da matriz
+ * @param colunas nº de colunas da matriz
+ */
+void inicializa_matriz_sequencia_int(int *matriz, int inicio, int linhas, int colunas) {
+	int *celula;
+
+	for (int j = 0; j < linhas; j++)
+		for (int i = 0; i < colunas; i++)
+		{
+			celula = (matriz + j + i * colunas);
+			*celula = inicio++;			
+		}
+			
+}
+
+/**
+ * Inicializa um vetor com valores pré-definidos
+ * @param vetor Vetor à ser inicializado
+ * @param valor Valor para inicializar o vetor
+ * @param len   tamanho do vetor
+ */
+void inicializa_vetor_mesmo_valor(int vetor[], int valor, int len) {
+	for (int i = 0; i < len; i++)
+		vetor[i] = valor;	
+}
+
+/**
+ * Inicializa um vetor com zeros
+ * @param vetor Vetor à ser inicializado
+ * @param len   Tamanho do vetor
+ */
+void inicializa_vetor_zero(int vetor[], int len) {
+	inicializa_vetor_mesmo_valor(vetor, 0, len);
+}
+
+/**
+ * Passa a soma de linhas para um vetor
+ * @param  matriz  Matriz para se somar as linhas
+ * @param  linhas  nº de linhas da matriz
+ * @param  colunas nº de colunas da matriz
+ * @param  soma    vetor para guardar a soma das linhas
+ * @param  len     tamanho do vetor
+ * @return         Retorna 0 se não validar os parâmetros e retorna 1 se sim
+ */
+int reduz_matriz_soma_linhas(int *matriz, int linhas, int colunas, int soma[], int len) {
+	if(linhas != len && colunas != len)
+		return 0;
+
+	int *celula;
+
+	for (int j = 0; j < linhas; j++) // Linhas
+		for (int i = 0; i < colunas; i++) // Colunas
+		{
+			celula = (matriz + i + j * colunas);
+			soma[j] += *celula;
+		}
+
+	return 1;
+}
+
+/**
+ * Passa a soma de colunas para um vetor
+ * @param  matriz  Matriz para se somar as colunas
+ * @param  linhas  nº de linhas da matriz
+ * @param  colunas nº de colunas da matriz
+ * @param  soma    vetor para guardar a soma das colunas
+ * @param  len     tamanho do vetor
+ * @return         Retorna 0 se não validar os parâmetros e retorna 1 se sim
+ */
+int reduz_matriz_soma_colunas(int *matriz, int linhas, int colunas, int soma[], int len) {
+	if(linhas != len && colunas != len)
+		return 0;
+
+	int *celula;
+
+	for (int i = 0; i < colunas; i++) // Colunas
+		for (int j = 0; j < linhas; j++) // Linhas
+		{
+			celula = (matriz + j + i * colunas);
+			soma[j] += *celula;
+		}
+
+	return 1;
+}
+
+/**
+ * Calcula a soma de elementos de uma determinada coluna de uma matriz
+ * @param  matriz Matriz para o cálculo
+ * @param  linhas número de linhas da matriz
+ * @param  col    coluna à ser calculada
+ * @return        soma dos elementos da coluna da matriz
+ */
+int soma_coluna_matriz_int(int *matriz, int linhas, int col) {
+	int soma = 0, i, *celula;
+
+	col--;
+
+	for (i = 0; i < linhas; i++) {
+		celula = (matriz + col + i * linhas);
+		soma += *celula;
+	}
+
+	return soma;
+}
+
+/**
+ * Calcula a soma de elementos de uma determinada linha de uma matriz
+ * @param  matriz Matriz para o cálculo
+ * @param  colunas número de colunas da matriz
+ * @param  lin    linha à ser calculada
+ * @return        soma dos elementos da .linha da matriz
+ */
+int soma_linha_matriz_int(int *matriz, int colunas, int lin) {
+	int soma = 0, i, *celula;
+
+	lin--;
+
+	for (i = 0; i < colunas; i++) {
+		celula = (matriz + i + lin * colunas);
+		soma += *celula;
+	}
+
+	return soma;
+}
+
+/**
+ * Calcula a soma da diagonal especificada de determinada matriz, de determinados tamanhos
+ * @param  matriz Matriz sobre a qual serão efetuados os cálculos
+ * @param  lin    Nº de linhas da matriz
+ * @param  col    Nº de colunas da matriz
+ * @param  dig    Diagonal à ser calculada a soma
+ * @return        retorna a soma dos elementos da diagonal da matriz, ou zero se for encontrado erros ou
+ *                        se a soma for zero mesmo
+ */
+int soma_diagonal_matriz_int(int *matriz, int lin, int col, char dig) {
+
+	if(lin != col)
+		return 0;
+
+	int soma = 0, i, k = (lin - 1), *celula;
+
+	if(dig == 'P')
+		for (i = 0; i < lin; i++) {
+			celula = (matriz + i + i * lin);
+			soma += *celula;
+		}
+	else if(dig == 'S')
+		for (i = 0; i < lin; i++) {
+			celula = (matriz + i + (k - i) * lin);
+			soma += *celula;
+		}
+	else
+		return 0;
+
+	return soma;
+}
+
+int soma_elementos_matriz_int(int *matriz, int lin, int col) {
+	int soma = 0, *celula;
+
+	for (int i = 0; i < lin; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			celula = (matriz + j + i * col);
+			soma += *celula;
+		}
+	}
+
+	return soma;
+}
 #endif /* MATRIX_MATH_H */

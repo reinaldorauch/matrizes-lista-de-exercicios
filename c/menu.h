@@ -58,6 +58,8 @@ char get_option() {
     puts("Selecione uma opção:\n");
     puts("\t[1] Executar o programa para o exercício 2");
     puts("\t[2] Executar o programa para o exercício 3");
+    puts("\t[3] Executar o programa para o exercício 4");
+    puts("\t[4] Executar o programa para o exercício 5");
     puts("\t[0] Sair do programa");
 
     while((c = getchar()) != '\n')
